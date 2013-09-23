@@ -36,3 +36,5 @@ nosetests.xml
 
 env
 dev.db
+twostop.sublime-project
+twostop.sublime-workspace
