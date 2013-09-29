@@ -25,3 +25,7 @@ def signup(request):
   return render_to_response('profiles/signup.html', RequestContext(request, {
       'login_form': form,
   }))
+
+
+def home(request):
+  return render_to_response('base.html', RequestContext(request, {}))
