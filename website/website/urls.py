@@ -13,4 +13,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^signup/', signup, name='signup-user'),
+    url(r'^posts/', include('posts.urls')),
+    url(r'^api-auth/', include('rest_framework.urls',
+        namespace='rest_framework')),
 )

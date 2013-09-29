@@ -10,7 +10,7 @@ class SiteUser(AbstractUser):
       (MALE, _('Male')),
       (FEMALE, _('Female')),
   )
-  bio = models.CharField(_('bio'), max_length=200)
+  bio = models.CharField(_('bio'), max_length=200, null=True, blank=True)
   gender = models.CharField(_('gender'), max_length=1, choices=GENDER_CHOICES)
   photo = models.ImageField(_('photo'),
                             upload_to='profilephotos', null=True, blank=True)

@@ -1,0 +1,6 @@
+{% for post in posts %}
+{% if post.photo %}<img src="{{MEDIA_URL}}/post.photo">{% endif %}
+<p>{{post.content}} <small>{{post.timestamp}}</small></p>
+{% empty %}
+<p>No posts for you yet :(</p>
+{% endfor %}
