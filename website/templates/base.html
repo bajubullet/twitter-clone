@@ -35,13 +35,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#"><span class="glyphicon glyphicon-tree-deciduous"></span> Tree.me</a>
+          <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-tree-deciduous"></span> Tree.me</a>
         </div>
         <div class="collapse navbar-collapse">
           {% block navbar %}
           <ul class="nav navbar-nav pull-right">
-            <li><a href="#">{% if user.username %}{{ user.username }}{% else %}Login{% endif %}</a></li>
-          </ul>
+            {% if user.username %}
+              <li><a href="#">{{ user.username }}</a></li>
+            {% else %}
+              <li><a href="{% url 'login-user' %}">Login</a></li>
+            {% endif %}
           {% endblock %}
         </div><!--/.nav-collapse -->
       </div>

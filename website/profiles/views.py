@@ -1,9 +1,11 @@
 from django.conf import settings
 from django.contrib.auth import authenticate, login
+from django.core.urlresolvers import reverse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from forms import CreateUserForm
+from forms import CreateUserForm, LoginForm
 
 
 def signup(request):
@@ -15,7 +17,7 @@ def signup(request):
     if user is not None:
       if user.is_active:
         login(request, user)
-        # Redirect to success page.
+        return HttpResponseRedirect(reverse(landing))
       else:
         # Return disabled account error msg.
         pass
@@ -27,5 +29,17 @@ def signup(request):
   }))
 
 
-def home(request):
-  return render_to_response('base.html', RequestContext(request, {}))
+def login_user(request):
+  form = LoginForm(data=request.POST or None)
+  if form.is_valid():
+    login(request, form.get_user())
+    return HttpResponseRedirect(reverse(landing))
+  return render_to_response('profiles/login.html', RequestContext(request, {
+    'login_form': form,
+  }))
+
+
+def landing(request):
+  if not request.user.is_authenticated():
+    return HttpResponseRedirect(reverse(signup))
+  return render_to_response('home.html', RequestContext(request, {}))

@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from profiles.views import signup, home
+from profiles.views import signup, login_user, landing
 from django.contrib import admin
 admin.autodiscover()
 
@@ -12,9 +12,10 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^$', landing, name='landing'),
+    url(r'^login/$', login_user, name='login-user'),
     url(r'^signup/$', signup, name='signup-user'),
     url(r'^posts/', include('posts.urls')),
     url(r'^api-auth/', include('rest_framework.urls',
         namespace='rest_framework')),
-    url(r'^$', home, name='home'),
 )
