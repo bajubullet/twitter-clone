@@ -172,3 +172,8 @@ LOGGING = {
 # Extra Settings.
 AUTH_USER_MODEL = 'profiles.SiteUser'
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticated',
+    )
+}

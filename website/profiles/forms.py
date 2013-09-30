@@ -1,3 +1,5 @@
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import ContentType
@@ -29,6 +31,28 @@ def _add_post_permissions(site_user):
 
 class CreateUserForm(UserCreationForm):
   email = forms.EmailField(required=True)
+
+  class Meta:
+    model = SiteUser
+    fields = ('username',)
+
+  def __init__(self, *args, **kwargs):
+    super(CreateUserForm, self).__init__(*args, **kwargs)
+    self.helper = FormHelper()
+    self.helper.form_id = 'id-signupFrom'
+    self.helper.form_method = 'post'
+    self.helper.form_action = '/signup/'
+    self.helper.add_input(Submit('submit', 'Sign up'))
+
+
+  def clean_username(self):
+    """
+    Checks for unique username.
+    """
+    username = self.cleaned_data['username']
+    if SiteUser.objects.filter(username=username).exists():
+      raise forms.ValidationError(_('User with this username already exists.'))
+    return username
 
   def clean_email(self):
     """

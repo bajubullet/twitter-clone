@@ -23,7 +23,7 @@ def signup(request):
       # Return an 'invalid login' error msg.
       pass
   return render_to_response('profiles/signup.html', RequestContext(request, {
-      'login_form': form,
+      'signup_form': form,
   }))
 
 
