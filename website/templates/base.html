@@ -39,12 +39,9 @@
         </div>
         <div class="collapse navbar-collapse">
           {% block navbar %}
-          <ul class="nav navbar-nav pull-right">
-            {% if user.username %}
-              <li><a href="#">{{ user.username }}</a></li>
-            {% else %}
-              <li><a href="{% url 'login-user' %}">Login</a></li>
-            {% endif %}
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="{% url 'login-user' %}">Login</a></li>
+          </ul>
           {% endblock %}
         </div><!--/.nav-collapse -->
       </div>

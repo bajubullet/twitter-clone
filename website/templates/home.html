@@ -1,7 +1,19 @@
 {% extends 'base.html' %}
+{% block navbar %}
+  <ul class="nav navbar-nav navbar-right">
+    <li><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-send"></span> New Post</button></li>
+    <li><span></span></li>
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <span class="glyphicon glyphicon-user"></span> {{ user.username }} <b class="caret"></b>
+      </a>
+    </li>
+  </ul>
+  <form class="navbar-form navbar-right" role="search">
+    <div class="form-group">
+      <input class="form-control" type="text" placeholder="Search">
+    </div>
+  </form>
+{% endblock %}
 {% block container %}
-<div class="row">
-  <div class="col-md-4"></div>
-  <div class="col-md-8"></div>
-</div>
 {% endblock %}
