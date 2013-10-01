@@ -82,3 +82,18 @@ class LoginForm(AuthenticationForm):
     self.helper.form_method = 'post'
     self.helper.form_action = '/login/'
     self.helper.add_input(Submit('submit', _('Sign in')))
+
+
+class ProfileForm(forms.ModelForm):
+  class Meta:
+    model = SiteUser
+    fields = ('first_name', 'last_name', 'bio', 'gender', 'photo', 'website')
+
+  def __init__(self, *args, **kwargs):
+    super(ProfileForm, self).__init__(*args, **kwargs)
+    self.fields['bio'].widget = forms.Textarea(attrs={'rows': 4})
+    self.helper = FormHelper()
+    self.helper.form_id = 'id-profileForm'
+    self.helper.form_method = 'post'
+    self.helper.form_action = '/profile/'
+    self.helper.add_input(Submit('submit', _('Save')))
