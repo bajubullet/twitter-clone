@@ -5,3 +5,16 @@ body {
 #id-loginForm {
   padding-top: 60px;
 }
+
+.user-dp {
+  width: 64px;
+  height: 64px;
+}
+
+.post {
+  padding: 5px;
+}
+
+.post:hover {
+  background-color: #E6E6E6;
+}

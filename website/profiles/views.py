@@ -48,7 +48,8 @@ def landing(request):
 
 @login_required
 def profile(request):
-  form = ProfileForm(data=request.POST or None, instance=request.user)
+  form = ProfileForm(request.POST or None, request.FILES or None,
+      instance=request.user)
   if form.is_valid():
     user = form.save()
     return HttpResponseRedirect(reverse(landing))

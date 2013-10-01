@@ -94,6 +94,7 @@ class ProfileForm(forms.ModelForm):
     self.fields['bio'].widget = forms.Textarea(attrs={'rows': 4})
     self.helper = FormHelper()
     self.helper.form_id = 'id-profileForm'
+    self.helper.form_enctype = 'multipart/form-data'
     self.helper.form_method = 'post'
     self.helper.form_action = '/profile/'
     self.helper.add_input(Submit('submit', _('Save')))
