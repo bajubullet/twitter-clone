@@ -7,6 +7,7 @@ from django.shortcuts import render_to_response
 from django.template import RequestContext
 
 from forms import CreateUserForm, LoginForm, ProfileForm
+from posts.models import Post
 
 
 def signup(request):
@@ -43,7 +44,9 @@ def login_user(request):
 def landing(request):
   if not request.user.is_authenticated():
     return HttpResponseRedirect(reverse(signup))
-  return render_to_response('home.html', RequestContext(request, {}))
+  return render_to_response('home.html', RequestContext(request, {
+    'posts': Post.objects.filter(author=request.user)
+  }))
 
 
 @login_required
