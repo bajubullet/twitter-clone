@@ -44,8 +44,12 @@ def login_user(request):
 def landing(request):
   if not request.user.is_authenticated():
     return HttpResponseRedirect(reverse(signup))
+  following = request.user.following.all().order_by(
+      '-timestamp').values_list('followee')
+  following = [user[0] for user in following]
+  following.append(request.user.id)
   return render_to_response('home.html', RequestContext(request, {
-    'posts': Post.objects.filter(author=request.user)
+    'posts': Post.objects.filter(author__in=following)
   }))
 
 

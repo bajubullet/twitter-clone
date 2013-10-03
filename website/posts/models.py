@@ -9,3 +9,6 @@ class Post(models.Model):
   photo = models.ImageField(_('photo'),
                             upload_to='postphotos', null=True, blank=True)
   timestamp = models.DateTimeField(_('timestamp'), auto_now_add=True)
+
+  def __unicode__(self):
+    return '%s said: %s' % (self.author.username, self.content)

@@ -18,3 +18,7 @@ body {
 .post:hover {
   background-color: #E6E6E6;
 }
+
+.timestamp {
+  color: #000000;
+}

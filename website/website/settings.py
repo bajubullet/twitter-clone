@@ -136,6 +136,7 @@ INSTALLED_APPS = (
 
     'posts',
     'profiles',
+    'relationships',
 )
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
