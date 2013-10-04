@@ -1,6 +1,7 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework.reverse import reverse
+from rest_framework.views import APIView
 from rest_framework import viewsets
 
 from models import Post
@@ -23,3 +24,16 @@ class PostViewSet(viewsets.ModelViewSet):
 
   def get_queryset(self):
     return Post.objects.filter(author=self.request.user)
+
+
+class PostList(APIView):
+  """
+  List all posts, or create a new post.
+  """
+  def get(self, request, format=None, username=None):
+    if username:
+      posts = Post.objects.filter(author__username=username)
+    else:
+      posts = Post.objects.filter(author__in=request.user.users_following)
+    serializer = PostSerializer(posts.order_by('-timestamp'), many=True)
+    return Response(serializer.data)

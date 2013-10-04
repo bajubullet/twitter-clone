@@ -1,4 +1,8 @@
 {% extends 'base.html' %}
+{% block header %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/project.js"></script>
+{% endblock %}
+
 {% block navbar %}
   <form class="navbar-form navbar-left" role="search" action="{% url 'search-user' %}" method="POST">
     {% csrf_token %}
@@ -22,14 +26,9 @@
 {% endblock %}
 
 {% block container %}
-<div class="row">
+<div class="row" data-ng-app="project">
   <div class="col-md-3"></div>
-  <div class="col-md-9">
-    {% for post in posts %}
-    {% include '_includes/post.html' %}
-    {% empty %}
-      <p>No posts for you yet.</p>
-    {% endfor %}
+  <div class="col-md-9" data-ng-view="">
   </div>
 </div>
 {% endblock %}
