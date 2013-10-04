@@ -98,3 +98,7 @@ class ProfileForm(forms.ModelForm):
     self.helper.form_method = 'post'
     self.helper.form_action = '/profile/'
     self.helper.add_input(Submit('submit', _('Save')))
+
+
+class UserSearchForm(forms.Form):
+  q = forms.CharField(max_length=50, required=True)

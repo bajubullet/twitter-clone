@@ -2,11 +2,13 @@ from django.conf import settings
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
+from django.db.models import Q
 from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from forms import CreateUserForm, LoginForm, ProfileForm
+from forms import CreateUserForm, LoginForm, ProfileForm, UserSearchForm
+from models import SiteUser
 from posts.models import Post
 
 
@@ -70,3 +72,14 @@ def profile(request):
 def logout_user(request):
   logout(request)
   return HttpResponseRedirect(reverse(login_user))
+
+
+@login_required
+def search_user(request):
+  form = UserSearchForm(data=request.POST or None)
+  if form.is_valid():
+    q = form.cleaned_data['q']
+    users = SiteUser.objects.filter(Q(username__icontains=q) |
+        Q(first_name__icontains=q) | Q(last_name__icontains=q))
+    return render_to_response('profiles/search_user.html',
+        RequestContext(request, {'users': users}))
