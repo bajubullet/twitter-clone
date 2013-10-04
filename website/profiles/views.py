@@ -77,9 +77,10 @@ def logout_user(request):
 @login_required
 def search_user(request):
   form = UserSearchForm(data=request.POST or None)
+  users = []
   if form.is_valid():
     q = form.cleaned_data['q']
     users = SiteUser.objects.filter(Q(username__icontains=q) |
         Q(first_name__icontains=q) | Q(last_name__icontains=q))
-    return render_to_response('profiles/search_user.html',
+  return render_to_response('profiles/search_user.html',
         RequestContext(request, {'users': users}))

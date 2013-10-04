@@ -1,0 +1,8 @@
+{% extends 'home.html' %}
+{% block container %}
+{% for user_profile in users %}
+<p><a href="#">{{ user_profile }}</a> <small>{{ user_profile.get_full_name }}</small></p>
+{% empty %}
+<p>No users found.</p>
+{% endfor %}
+{% endblock %}
