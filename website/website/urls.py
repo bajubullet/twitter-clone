@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.conf.urls import patterns, include, url
-from profiles.views import signup, login_user, landing, profile
+from profiles import views
 from django.contrib import admin
 admin.autodiscover()
 
@@ -16,10 +16,11 @@ urlpatterns = patterns('',
     url(r'^media/(?P<path>.*)$',
         'django.views.static.serve',
         {'document_root': settings.MEDIA_ROOT.replace('\\','/')}, name='media'),
-    url(r'^$', landing, name='landing'),
-    url(r'^login/$', login_user, name='login-user'),
-    url(r'^signup/$', signup, name='signup-user'),
-    url(r'^profile/$', profile, name='user-profile'),
+    url(r'^$', views.landing, name='landing'),
+    url(r'^login/$', views.login_user, name='login-user'),
+    url(r'^logout/$', views.logout_user, name='logout-user'),
+    url(r'^signup/$', views.signup, name='signup-user'),
+    url(r'^profile/$', views.profile, name='user-profile'),
     url(r'^posts/', include('posts.urls')),
     url(r'^api-auth/', include('rest_framework.urls',
         namespace='rest_framework')),

@@ -171,6 +171,7 @@ LOGGING = {
 }
 
 # Extra Settings.
+AUTH_LOGIN_URL = '/login/'
 AUTH_USER_MODEL = 'profiles.SiteUser'
 CRISPY_TEMPLATE_PACK = 'bootstrap3'
 REST_FRAMEWORK = {

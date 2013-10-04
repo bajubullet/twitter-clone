@@ -6,15 +6,20 @@
     </div>
   </form>
   <ul class="nav navbar-nav navbar-right">
-    <li><button type="button" class="btn btn-primary navbar-btn"><span class="glyphicon glyphicon-send"></span> New Post</button></li>
+    <li><button type="button" class="btn btn-primary navbar-btn" data-toggle="modal" href="#id-preparePost"><span class="glyphicon glyphicon-send"></span></button></li>
     <li><span></span></li>
     <li class="dropdown">
       <a href="#" class="dropdown-toggle" data-toggle="dropdown">
         <span class="glyphicon glyphicon-user"></span> {{ user.username }} <b class="caret"></b>
       </a>
+      <ul class="dropdown-menu">
+        <li><a href="{% url 'user-profile' %}">Account Settings</a></li>
+        <li><a href="{% url 'logout-user' %}">Logout</a></li>
+      </ul>
     </li>
   </ul>
 {% endblock %}
+
 {% block container %}
 <div class="row">
   <div class="col-md-3"></div>
@@ -26,4 +31,9 @@
     {% endfor %}
   </div>
 </div>
+{% endblock %}
+
+{% block footer %}
+{% include '_includes/bootstrap-modal.html' %}
+<script type="text/javascript" src="{{ STATIC_URL }}js/site.js"></script>
 {% endblock %}

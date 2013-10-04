@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.core.urlresolvers import reverse
 from django.http import HttpResponseRedirect
@@ -32,6 +32,8 @@ def signup(request):
 
 
 def login_user(request):
+  if request.user.is_authenticated():
+    return HttpResponseRedirect(reverse(landing))
   form = LoginForm(data=request.POST or None)
   if form.is_valid():
     login(request, form.get_user())
@@ -63,3 +65,9 @@ def profile(request):
   return render_to_response('profiles/profile.html', RequestContext(request, {
     'profile_form': form
   }))
+
+
+@login_required
+def logout_user(request):
+  logout(request)
+  return HttpResponseRedirect(reverse(login_user))
