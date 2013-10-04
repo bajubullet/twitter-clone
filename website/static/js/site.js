@@ -8,7 +8,6 @@ function savePost() {
     method: 'post',
     data: data,
     success: function(response) {
-      alert(response);
       $('#id-preparePost').modal('hide');
     }
   });
