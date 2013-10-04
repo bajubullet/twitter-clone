@@ -1,6 +1,6 @@
 <div class="media post">
   <a class="pull-left">
-    <img class="media-object user-dp" src="{{ MEDIA_URL }}{{ post.author.photo }}">
+    <img class="media-object user-dp" src="{% if post.author.photo %}{{ MEDIA_URL }}{{ post.author.photo }}{% else %}{{ STATIC_URL }}img/default_user.jpg{% endif %}">
   </a>
   <div class="media-body">
     <h4 class="media-heading">{{ post.author.get_full_name }} <small>@<a href="">{{ post.author.username }}</a></small></h4>
