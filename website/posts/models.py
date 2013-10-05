@@ -1,3 +1,5 @@
+import time
+
 from django.conf import settings
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
@@ -12,3 +14,7 @@ class Post(models.Model):
 
   def __unicode__(self):
     return '%s said: %s' % (self.author.username, self.content)
+
+  @property
+  def timestamp_in_millisecond(self):
+    return time.mktime(self.timestamp.timetuple()) * 1000

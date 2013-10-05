@@ -1,5 +1,5 @@
 <!-- Modal -->
-<div class="modal fade" id="id-preparePost" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="id-preparePost" tabindex="-1" role="dialog" aria-hidden="true" data-ng-controller="CreateCtrl">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -9,11 +9,14 @@
       <div class="modal-body">
         <form id="id-newPostForm">
           {% csrf_token %}
-          <textarea rows="3" name="content" class="form-control"></textarea>
+          <div class="form-group" data-ng-class="{'has-error': validPostLength()}">
+            <textarea rows="3" name="content" class="form-control" data-ng-model="postContent"></textarea>
+          </div>
         </form>
+        <p class="pull-right" data-ng-class="{'text-danger': validPostLength()}">Remaiming: {[{ remaining() }]}</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary" onclick="savePost()"><span class="glyphicon glyphicon-send"></span> Post</button>
+        <button type="button" class="btn btn-primary" data-ng-click="savePost()" data-ng-disabled="validPostLength()"><span class="glyphicon glyphicon-send"></span> Post</button>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
