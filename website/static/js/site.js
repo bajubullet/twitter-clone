@@ -31,3 +31,8 @@ function getCookie(name) {
     return cookieValue;
 }
 var csrftoken = getCookie('csrftoken');
+
+
+$('#id-preparePost').on('shown.bs.modal', function () {
+    $('#id-postTextarea').focus();
+})
