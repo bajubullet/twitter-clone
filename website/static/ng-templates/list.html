@@ -4,7 +4,7 @@
       <img class="media-object user-dp" data-ng-src="{[{ post.author_photo }]}">
     </a>
     <div class="media-body">
-      <h4 class="media-heading">{[{ post.author_full_name }]} <small>@<a href="">{[{ post.author_username }]}</a></small></h4>
+      <h4 class="media-heading">{[{ post.author_full_name }]} <small>@<a href="#/user/{[{ post.author_username }]}">{[{ post.author_username }]}</a></small></h4>
       {[{ post.content }]}
       <p><small class="pull-right"><a class="timestamp" href="/posts/posts/{[{ post.id }]}/.json">{[{ post.timestamp }]}</a></small></p>
     </div>

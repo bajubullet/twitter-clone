@@ -32,12 +32,13 @@ class PostList(APIView):
   """
   List all posts, or create a new post.
   """
-  def get(self, request, format=None, username=None):
+  def get(self, request, format=None):
+    username = request.GET.get('username', '')
     if username:
       posts = Post.objects.filter(author__username=username)
     else:
       posts = Post.objects.filter(author__in=request.user.users_following)
-    serializer = PostSerializer(posts.order_by('-timestamp'), many=True)
+    serializer = PostSerializer(posts, many=True)
     return Response(serializer.data)
 
   def post(self, request, format=None):

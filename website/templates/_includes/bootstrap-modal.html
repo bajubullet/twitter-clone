@@ -10,7 +10,7 @@
         <form id="id-newPostForm">
           {% csrf_token %}
           <div class="form-group" data-ng-class="{'has-error': validPostLength()}">
-            <textarea rows="3" name="content" class="form-control" data-ng-model="postContent"></textarea>
+            <textarea rows="3" name="content" class="form-control" data-ng-model="postContent" id="id-postTextarea"></textarea>
           </div>
         </form>
         <p class="pull-right" data-ng-class="{'text-danger': validPostLength()}">Remaiming: {[{ remaining() }]}</p>
