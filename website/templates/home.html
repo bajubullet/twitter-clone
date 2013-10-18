@@ -31,7 +31,26 @@
 
 {% block container %}
 <div class="row">
-  <div class="col-md-3"></div>
+  <div class="col-md-3">
+    <div class="table-responsive">
+      <table class="table table-hover table-bordered centered">
+        <thead>
+          <tr>
+            <th>Following</th>
+            <th>Followers</th>
+            <th>Posts</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><a href="">{{ user.following.count }}</a></td>
+            <td><a href="">{{ user.followers.count }}</a></td>
+            <td><a href="">{{ user.post_set.count }}</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
   <div class="col-md-9" data-ng-view="">
   </div>
 </div>

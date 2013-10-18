@@ -66,3 +66,8 @@ function CreateCtrl($scope, $http, postService) {
     return $scope.remaining() < 0;
   }
 }
+
+
+function UserCtrl($scope) {
+  console.log('User contriller initiated!!')
+}

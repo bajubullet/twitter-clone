@@ -81,6 +81,7 @@ def search_user(request):
   if form.is_valid():
     q = form.cleaned_data['q']
     users = SiteUser.objects.filter(Q(username__icontains=q) |
-        Q(first_name__icontains=q) | Q(last_name__icontains=q))
+        Q(first_name__icontains=q) | Q(last_name__icontains=q)).exclude(
+            pk=request.user.id)
   return render_to_response('profiles/search_user.html',
         RequestContext(request, {'users': users}))

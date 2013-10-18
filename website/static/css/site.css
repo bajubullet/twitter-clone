@@ -22,3 +22,11 @@ body {
 .timestamp {
   color: #000000;
 }
+
+.black-border {
+  border: 1px solid black;
+}
+
+.centered {
+  text-align: center;
+}
